@@ -15,7 +15,7 @@ module.exports = {
     filename: 'index.common.js',
     chunkFilename: '[id].js',
     libraryExport: 'default',
-    library: 'ELEMENT',
+    library: 'library',
     libraryTarget: 'commonjs2'
   },
   resolve: {
