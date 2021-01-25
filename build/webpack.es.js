@@ -14,6 +14,8 @@ module.exports = {
     publicPath: '/dist/',
     filename: 'index.es.js',
     chunkFilename: '[id].js',
+		library: 'barbarian',
+		libraryTarget: 'var'
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
