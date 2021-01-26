@@ -1,5 +1,4 @@
 const path = require('path');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const EsmWebpackPlugin = require('@purtuga/esm-webpack-plugin');
@@ -16,7 +15,6 @@ module.exports = merge(baseWebpackConfig, {
 		libraryTarget: 'var'
   },
   plugins: [
-    // new CleanWebpackPlugin(),
     new ProgressBarPlugin(),
     new VueLoaderPlugin(),
     new EsmWebpackPlugin()
