@@ -22,7 +22,7 @@
   "webpack-cli": "^3.0.8"
 ```
 
-# gulp
+# gulp依赖
 ```bash
   "gulp": "^4.0.2",
   "gulp-autoprefixer": "^7.0.1",
