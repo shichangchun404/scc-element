@@ -1,5 +1,5 @@
-import SccCol from './packages/col/index.js';
-import SccRow from './packages/row/index.js';
+import SccCol from './components/col/index.js';
+import SccRow from './components/row/index.js';
 
 const components = [
   SccCol,
