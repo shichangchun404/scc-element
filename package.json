@@ -8,7 +8,8 @@
     "build:file": "node build/bin/build-components-json.js && node build/bin/build-entry.js",
     "build": "npm run build:common && npm run build:es",
     "build:common": "webpack --config build/webpack.common.js",
-    "build:es": "webpack --config build/webpack.es.js"
+    "build:es": "webpack --config build/webpack.es.js",
+    "build:theme": "gulp build --gulpfile src/packages/theme/gulpfile.js "
   },
   "repository": {
     "type": "git",

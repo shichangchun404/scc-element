@@ -1,6 +1,8 @@
 <template>
-  <div>
+  <div class="scc-row">
     {{msg}}
+     <p class="scc-row-p1">111</p>
+    <p class="scc-row-p2">222</p>
   </div>
 </template>
 
