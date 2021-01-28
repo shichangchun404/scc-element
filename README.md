@@ -21,3 +21,11 @@
   "webpack": "^4.14.0",
   "webpack-cli": "^3.0.8"
 ```
+
+# gulp
+```bash
+  "gulp": "^4.0.2",
+  "gulp-autoprefixer": "^7.0.1",
+  "gulp-cssmin": "^0.2.0",
+  "gulp-sass": "^4.1.0",
+```
