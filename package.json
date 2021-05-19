@@ -1,6 +1,6 @@
 {
   "name": "scc-element",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -44,5 +44,8 @@
     "webpack": "^4.14.0",
     "webpack-cli": "^3.0.8",
     "webpack-merge": "^4.1.0"
+  },
+  "dependencies": {
+    "html2canvas": "^1.0.0-rc.7"
   }
 }
