@@ -1,9 +1,11 @@
 import SccCol from './components/col/index.js';
 import SccRow from './components/row/index.js';
+import SccCanvas from './components/canvas/index.js';
 
 const components = [
   SccCol,
-  SccRow
+  SccRow,
+  SccCanvas
 ];
 
 const install = function(Vue, opts = {}) {
@@ -17,9 +19,10 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 export default {
-  version: '0.0.3',
+  version: '0.0.4',
   install,
   SccCol,
-  SccRow
+  SccRow,
+  SccCanvas
 };
 
