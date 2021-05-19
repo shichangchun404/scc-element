@@ -65,6 +65,7 @@ export default {
     * 监听选择文旦内容
     */
     listenSelectContent(){
+      let _this = this
       this.selectObj.onmouseup = function(e){
         var event = window.event || e;
         var position = {'x': e.pageX,'y': e.pageY}
@@ -75,18 +76,18 @@ export default {
             var endIndex=target.selectionEnd;
             if(staIndex!=endIndex){
               var sText=target.value.substring(staIndex,endIndex);
-              this.showTip(sText,target, position);
+              _this.showTip(sText,target, position);
             }
         } else { //获取选中文字
           var sText = document.selection == undefined ? document.getSelection().toString():document.selection.createRange().text;
           if (sText != "") { // 将参数传入回调函数fn
-            this.showTip(sText, target, position);
+            _this.showTip(sText, target, position);
           }
         }
       }
       this.selectObj.onmousedown = function(e){ //1清空dialog内容 2隐藏dialog弹窗
-        this.canvasBox.innerHTML = ''
-        closeDialog()
+        _this.canvasBox.innerHTML = ''
+        _this.closeDialog()
       }
     },
 
@@ -94,16 +95,17 @@ export default {
      * 矩形工具-监听画布鼠标时间
      */ 
     listen4Rectangle() {
+      var _this = this
       this.canvasBox.onmousedown  = function(e){
-        this.isMouseDown = true
-        this.startPosition = {'x': e.offsetX,'y': e.offsetY}
-        this.startClientPoint = {'x': e.clientX,'y': e.clientY}
+        _this.isMouseDown = true
+        _this.startPosition = {'x': e.offsetX,'y': e.offsetY}
+        _this.startClientPoint = {'x': e.clientX,'y': e.clientY}
       }
       this.canvasBox.onmousemove = function(e) {
-        if (this.isMouseDown) {
-          this.endPosition = {'x': e.offsetX,'y': e.offsetY}
-          this.endClientPoint = {'x': e.clientX,'y': e.clientY}
-          this.printHoverRectangle(this.startClientPoint, this.endClientPoint)
+        if (_this.isMouseDown) {
+          _this.endPosition = {'x': e.offsetX,'y': e.offsetY}
+          _this.endClientPoint = {'x': e.clientX,'y': e.clientY}
+          _this.printHoverRectangle(_this.startClientPoint, _this.endClientPoint)
         }
       }
     },
@@ -112,10 +114,11 @@ export default {
      * 点击动态矩形 隐藏本身
      */ 
     listenHoverRectangle () {
+      let _this = this
       this.hoverRectangle.onclick = function(){
-        this.hideHoverRectangle()
-        this.isMouseDown = false
-        this.printRect(this.startPosition, this.endPosition)
+        _this.hideHoverRectangle()
+        _this.isMouseDown = false
+        _this.printRect(_this.startPosition, _this.endPosition)
       }
     },
 
@@ -123,17 +126,18 @@ export default {
      * 选择插入文字-监听画布鼠标事件
      */
     listen4Text(){
+      let _this = this
       this.canvasBox.onmousedown  = function(e){}
       this.canvasBox.onmouseup = function(e){
-        if (this.isShowTextarea) {
+        if (_this.isShowTextarea) {
           var text = this.textarea.value
-          this.fillText(text, this.textareaX, this.textareaY)
-          this.setStyle('.textarea{display: none;}')
-          this.textarea.value = ''
-          this.isShowTextarea = false
+          _this.fillText(text, _this.textareaX, _this.textareaY)
+          _this.setStyle('.textarea{display: none;}')
+          _this.textarea.value = ''
+          _this.isShowTextarea = false
         } else {
-          this.textareaX = e.offsetX
-          this.textareaY = e.offsetY
+          _this.textareaX = e.offsetX
+          _this.textareaY = e.offsetY
           showTextarea(e.clientX,e.clientY)
         }
       }
@@ -145,9 +149,10 @@ export default {
      * 监听页面滚动
      */
     listenWindowScroll() {
+      let _this = this
       window.addEventListener("scroll", windowScroll);
       function windowScroll(e) {
-        this.windowScrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+        _this.windowScrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
       }    
     },
 
@@ -177,7 +182,7 @@ export default {
         this.globalcanvas = canvas
         this.canvasBox.appendChild(canvas)
         this.ctx = this.globalcanvas.getContext("2d");
-        canvas_copy()
+        this.canvas_copy()
       });
     },
 
@@ -185,6 +190,7 @@ export default {
      * 监听页面点击 取消tip弹窗
      */ 
     listenDocumentClick(){
+      let _this = this
       document.onclick=function(e){
         var event = window.event || e;
         var target = event.srcElement ? event.srcElement : event.target;
@@ -203,7 +209,7 @@ export default {
         if (sText) {
           return
         }
-        this.setStyle(`.select-widFeedback{display: none;}`)
+        _this.setStyle(`.select-widFeedback{display: none;}`)
       }
     },
 
