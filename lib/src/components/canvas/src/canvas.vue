@@ -18,7 +18,6 @@
       <textarea id="textarea" class="textarea hide"></textarea>
       <div id="hoverRectangle" class="hoverRectangle hide"></div>
     </div>
-    <div id="imgBox"></div>
   </div>
 </template>
 
@@ -26,6 +25,16 @@
 import html2canvas from 'html2canvas';
 export default {
   name: 'SccCanvas',
+  props: {
+    contentId: {
+      type: String,
+      required: true
+    },
+    fillStyle: {
+      type: String,
+      default: 'rgba(192, 80, 77, 0.5)'
+    }
+  },
   data () {
     return {
       globalcanvas: {},
@@ -33,7 +42,6 @@ export default {
       imgData: [], // 记录每一步操作内容
       selectObj:{},
       canvasBox:{},
-      imgBox:{},
       hoverRectangle:{},
       textarea:{},
       textareaX: 0,
@@ -44,17 +52,14 @@ export default {
       startClientPoint:{x:0,y:0},
       endClientPoint: {x:0,y:0},
       isShowTextarea: false,
-      isMouseDown: false, // 鼠标在canvas上长安
-      fillStyle: 'rgba(192, 80, 77, 0.5)'
+      isMouseDown: false, // 鼠标在canvas上长按住
     }
   },
   mounted () {
-    this.selectObj = document.getElementById('content')
+    this.selectObj = document.getElementById(this.contentId)
     this.canvasBox = document.getElementById('dialog')
-    this.imgBox = document.getElementById('imgBox')
     this.textarea = document.getElementById('textarea')
     this.hoverRectangle = document.getElementById('hoverRectangle')
-
     this.listenSelectContent()
     this.listenDocumentClick()
     this.listen4Rectangle()
@@ -220,9 +225,6 @@ export default {
      */
     convertCanvasToImage() {
       let imageSrc = this.globalcanvas.toDataURL("image/png")
-      // var image = new Image();
-      // image.src = imageSrc
-      // this.imgBox.appendChild(image)
       this.dataURLtoFile(imageSrc)
     },
 
@@ -325,9 +327,7 @@ export default {
         u8arr[n] = bstr.charCodeAt(n);
       }
       var file = new File([u8arr], filename, {type:mime});
-      console.log('file ============ ', file)
       this.$emit("getImgFile", file)
-      // return file
     }
   }
 }
