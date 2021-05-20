@@ -32,7 +32,7 @@ export default {
     },
     fillStyle: {
       type: String,
-      default: 'rgba(192, 80, 77, 0.5)'
+      default: 'rgba(255,106,0,.5)'
     }
   },
   data () {

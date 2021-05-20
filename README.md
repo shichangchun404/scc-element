@@ -14,7 +14,7 @@
 |名称|类型|是否必需|默认值|描述|
 |---|---|---|---|---|
 |**contentId**|String|true|-- |需要截图的内容区域DOM的id|
-|**fillStyle**|String|false|'rgba(192, 80, 77, 0.5)'|矩形工具填充颜色|
+|**fillStyle**|String|false|'rgba(255,106,0,.5)'|矩形工具填充颜色|
 |**getImgFile**|Function|false|-- |获取截图后的生成的图片函数|
 
 
