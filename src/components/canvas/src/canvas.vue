@@ -1,8 +1,8 @@
 <template>
   <div class="scc-canvas">
-    <div class="select-widFeedback hide" style="color:yellow; position: absolute; z-index: 3;" @click="showDialog()">
-      <div class="select-widFeedback-icon"></div>
-      <div class="select-widFeedback-text" data-spm-anchor-id="a2c4g.11186623.0.i54.37466d72FONjUY">文档反馈</div>
+    <div class="select-box hide"  @click="showDialog()">
+      <div class="select-box-icon"></div>
+      <div class="select-box-text">文档反馈</div>
     </div>
     <div class="canvas-edit-box">
       <div class="dialogbg"></div>
@@ -176,7 +176,7 @@ export default {
      */
     showTip(txt,target,position){
       this.getCanvasFromHtml()
-      var css = `.select-widFeedback{left: ${position.x}px; top: ${position.y}px;display: block;}`
+      var css = `.select-box{left: ${position.x}px; top: ${position.y}px;display: block;}`
       this.setStyle(css)
     },
 
@@ -216,7 +216,7 @@ export default {
         if (sText) {
           return
         }
-        _this.setStyle(`.select-widFeedback{display: none;}`)
+        _this.setStyle(`.select-box{display: none;}`)
       }
     },
 
