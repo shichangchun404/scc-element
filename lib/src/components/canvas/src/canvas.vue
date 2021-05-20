@@ -185,7 +185,8 @@ export default {
      */
     getCanvasFromHtml(){
       var _this = this
-      html2canvas(document.body).then(function(canvas) {
+      var options = {allowTaint:true}
+      html2canvas(document.body, options).then(function(canvas) {
         _this.globalcanvas = canvas
         _this.canvasBox.appendChild(canvas)
         _this.ctx = _this.globalcanvas.getContext("2d");
