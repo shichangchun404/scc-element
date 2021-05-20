@@ -326,7 +326,7 @@ export default {
       while(n--){
         u8arr[n] = bstr.charCodeAt(n);
       }
-      var file = new File([u8arr], filename, {type:mime});
+      var file = new File([u8arr], filename, {type:mime})
       this.$emit("getImgFile", file)
     }
   }
