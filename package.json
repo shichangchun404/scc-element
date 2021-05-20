@@ -1,8 +1,8 @@
 {
   "name": "scc-element",
-  "version": "1.0.5",
+  "version": "1.0.8",
   "description": "",
-  "main": "index.js",
+  "main": "lib/index.es.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run build:common && npm run build:es && npm run build:theme",
