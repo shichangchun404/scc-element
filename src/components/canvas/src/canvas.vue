@@ -291,7 +291,7 @@ export default {
     cancel(){
       if (this.imgData.length>1) {
         this.imgData.pop()
-        this.ctx.putImageData(this.imgData[this.mgData.length-1],0,0);
+        this.ctx.putImageData(this.imgData[this.imgData.length-1],0,0);
       } else {
         console.log('已经是第一步了')
       }
