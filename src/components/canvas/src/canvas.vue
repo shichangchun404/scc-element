@@ -289,7 +289,7 @@ export default {
      * 撤回 取出imgData记录的上一张
      */ 
     cancel(){
-      if (imgData.length>1) {
+      if (this.imgData.length>1) {
         this.imgData.pop()
         this.ctx.putImageData(this.imgData[this.mgData.length-1],0,0);
       } else {
