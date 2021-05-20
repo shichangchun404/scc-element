@@ -10,9 +10,10 @@
     left: 1000px;
     button {
       padding: 10px;
+      border: solid 1px #000;
     }
   }
-  .select-widFeedback{
+  .select-box{
     line-height: 26px;
     height: 28px;
     border: 1px solid #ff6a00;
@@ -23,8 +24,11 @@
     box-sizing: border-box;
     cursor: pointer;
     background-color: #fff;
+    color:yellow; 
+    position: absolute; 
+    z-index: 3;
   }
-  .select-widFeedback-icon{
+  .select-box-icon{
     width: 12.1px;
     height: 11.6px;
     display: inline-block;
@@ -33,7 +37,7 @@
     vertical-align: sub;
     background-repeat: no-repeat;
   }
-  .select-widFeedback-text{
+  .select-box-text{
     font-size: 12px;
     color: #ff6a00;
     font-family: PingFangSC-Regular;
