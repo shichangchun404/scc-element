@@ -30,3 +30,5 @@
   "gulp-sass": "^4.1.0",
 ```
 
+npm version [<newversion> | major | minor | patch | premajor | preminor | prepatch | prerelease [--preid=<prerelease-id>] | from-git]
+
