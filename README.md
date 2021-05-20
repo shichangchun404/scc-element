@@ -1,34 +1,36 @@
 # scc-element
-### 自定义组件
+### 基于vue的自定义组件
 
-# 基础依赖
+>组建1 scc-cnavas 用于用户截图当前页面，并具有简单标注功能。
+全局引入方式
 ```bash
-  "@purtuga/esm-webpack-plugin": "^1.3.0",
-  "babel-core": "6.26.3",
-  "babel-loader": "7.1.5",
-  "babel-plugin-jsx-v-model": "^2.0.3",
-  "babel-plugin-syntax-jsx": "6.18",
-  "babel-plugin-transform-runtime": "^6.23.0",
-  "babel-plugin-transform-vue-jsx": "^3.7.0",
-  "babel-preset-env": "1.7",
-  "babel-preset-stage-2": "6.24.1",
-  "babel-regenerator-runtime": "6.5",
-  "babel-runtime": "^6.26.0",
-  "progress-bar-webpack-plugin": "^2.1.0",
-  "vue": "^2.6.12",
-  "vue-loader": "^15.7.0",
-  "vue-template-compiler": "^2.6.12",
-  "webpack": "^4.14.0",
-  "webpack-cli": "^3.0.8"
+  import SccElement from 'scc-element'
+  import 'scc-element/lib/theme/canvas.css'
+
+  Vue.use(SccElement)
 ```
 
-# gulp依赖
+>使用组建 需要截图的内容区域 id="content" 事件getImgile会返回编辑后生成的file文件
 ```bash
-  "gulp": "^4.0.2",
-  "gulp-autoprefixer": "^7.0.1",
-  "gulp-cssmin": "^0.2.0",
-  "gulp-sass": "^4.1.0",
+<template>
+    <div>
+      <div id="content">我是正文内容</div>
+      <scc-canvas @getImgFile="getImgFile"></scc-canvas>
+    </div>
+</template>
+
+<script>
+import {upfile} from '@/api'
+export default {
+  methods: {
+    async getImgFile(file) {
+      let form = new FormData();
+      form.append("file",file);
+      let data = await upfile(form) // 将图片上传服务端
+    }
+  }
+}
+</script>
 ```
 
-npm version [<newversion> | major | minor | patch | premajor | preminor | prepatch | prerelease [--preid=<prerelease-id>] | from-git]
 

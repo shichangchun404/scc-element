@@ -219,10 +219,11 @@ export default {
      * canvas转图片
      */
     convertCanvasToImage() {
-      var image = new Image();
-      image.src = this.globalcanvas.toDataURL("image/png");
-      this.imgBox.appendChild(image)
-      this.dataURLtoFile(image.src)
+      let imageSrc = this.globalcanvas.toDataURL("image/png")
+      // var image = new Image();
+      // image.src = imageSrc
+      // this.imgBox.appendChild(image)
+      this.dataURLtoFile(imageSrc)
     },
 
     /**
@@ -325,8 +326,8 @@ export default {
       }
       var file = new File([u8arr], filename, {type:mime});
       console.log('file ============ ', file)
-      this.$emit("getImgile", file)
-      return file
+      this.$emit("getImgFile", file)
+      // return file
     }
   }
 }
