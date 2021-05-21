@@ -258,7 +258,20 @@ export default {
      * 动态矩形
      */ 
     printHoverRectangle(start,end){ 
-      var style = `.hoverRectangle{display: block;left: ${start.x}px;top: ${start.y}px;width: ${end.x-start.x}px;height: ${end.y-start.y}px;}`
+      var style = ''
+      if (start.x<end.x) {
+        if (start.y<end.y) {
+          style = `.hoverRectangle{display: block;left: ${start.x}px;top: ${start.y}px;width: ${Math.abs(end.x-start.x)}px;height: ${Math.abs(end.y-start.y)}px;}`
+        } else {
+          style = `.hoverRectangle{display: block;left: ${start.x}px;top: ${end.y}px;width: ${Math.abs(end.x-start.x)}px;height: ${Math.abs(end.y-start.y)}px;}`
+        } 
+      } else {
+        if (start.y<end.y) {
+          style = `.hoverRectangle{display: block;left: ${end.x}px;top: ${start.y}px;width: ${Math.abs(end.x-start.x)}px;height: ${Math.abs(end.y-start.y)}px;}`
+        } else {
+          style = `.hoverRectangle{display: block;left: ${end.x}px;top: ${end.y}px;width: ${Math.abs(end.x-start.x)}px;height: ${Math.abs(end.y-start.y)}px;}`
+        }
+      }
       this.setStyle(style)
     },
 
@@ -328,7 +341,7 @@ export default {
         u8arr[n] = bstr.charCodeAt(n);
       }
       var file = new File([u8arr], filename, {type:mime})
-      this.$emit("getImgFile", file)
+      this.$emit("getImgFile", file, dataurl)
     }
   }
 }
