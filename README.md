@@ -32,7 +32,7 @@
 import {upfile} from '@/api'
 export default {
   methods: {
-    async getImgFile(file) {
+    async getImgFile(file, data) {
       let form = new FormData();
       form.append("file",file);
       let data = await upfile(form) // 将图片上传服务端
