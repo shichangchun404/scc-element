@@ -1,11 +1,13 @@
 import SccCol from './components/col/index.js';
 import SccRow from './components/row/index.js';
 import SccCanvas from './components/canvas/index.js';
+import SccScreenshot from './components/screenshot/index.js';
 
 const components = [
   SccCol,
   SccRow,
-  SccCanvas
+  SccCanvas,
+  SccScreenshot
 ];
 
 const install = function(Vue, opts = {}) {
@@ -23,6 +25,7 @@ export default {
   install,
   SccCol,
   SccRow,
-  SccCanvas
+  SccCanvas,
+  SccScreenshot
 };
 
