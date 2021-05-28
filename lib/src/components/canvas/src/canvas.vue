@@ -6,7 +6,10 @@
     </div>
     <div class="canvas-edit-box">
       <div class="dialogbg"></div>
-      <div id="dialog" class="dialog"></div>
+      <!-- <div id="dialog" class="dialog"></div> -->
+      <div id="canvasBox" class="dialog">
+        <canvas id="mycanvas"></canvas>
+      </div>
       <div class="botton-box">
         <button @click="closeDialog()">取消</button>
         <button @click="listen4Rectangle()">矩形工具</button>
@@ -57,7 +60,9 @@ export default {
   },
   mounted () {
     this.selectObj = document.getElementById(this.contentId)
-    this.canvasBox = document.getElementById('dialog')
+    this.canvasBox = document.getElementById('canvasBox')
+    this.globalcanvas = document.getElementById('mycanvas')
+		this.ctx = this.globalcanvas.getContext("2d");
     this.textarea = document.getElementById('textarea')
     this.hoverRectangle = document.getElementById('hoverRectangle')
     this.listenSelectContent()
@@ -92,7 +97,7 @@ export default {
         }
       }
       this.selectObj.onmousedown = function(e){ //1清空dialog内容 2隐藏dialog弹窗
-        _this.canvasBox.innerHTML = ''
+        //_this.canvasBox.innerHTML = '' // to do
         _this.closeDialog()
       }
     },
@@ -175,7 +180,8 @@ export default {
      * 弹出框tip
      */
     showTip(txt,target,position){
-      this.getCanvasFromHtml()
+      //this.getCanvasFromHtml()
+      this.drawImageInCanvas()
       var css = `.select-box{left: ${position.x}px; top: ${position.y}px;display: block;}`
       this.setStyle(css)
     },
@@ -192,6 +198,19 @@ export default {
         _this.ctx = _this.globalcanvas.getContext("2d");
         _this.canvas_copy()
       });
+    },
+
+    /**
+     * 从服务端拿截图，绘制到canvas
+    */
+    drawImageInCanvas(){
+      var _this = this
+			let img = new Image();
+      img.src = this.baseImageUrl
+			img.onload = function(){
+				_this.drawImage(img,0,0);
+        _this.canvas_copy()
+			}
     },
 
     /**
@@ -328,7 +347,7 @@ export default {
         u8arr[n] = bstr.charCodeAt(n);
       }
       var file = new File([u8arr], filename, {type:mime})
-      this.$emit("getImgFile", file)
+      this.$emit("getImgFile", file, dataurl)
     }
   }
 }
