@@ -70,6 +70,7 @@ export default {
     this.listen4Rectangle()
     this.listenWindowScroll()
     this.listenHoverRectangle()
+    this.drawImageInCanvas()
   },
   methods: {
     /*
@@ -181,7 +182,7 @@ export default {
      */
     showTip(txt,target,position){
       //this.getCanvasFromHtml()
-      this.drawImageInCanvas()
+      //this.drawImageInCanvas()
       var css = `.select-box{left: ${position.x}px; top: ${position.y}px;display: block;}`
       this.setStyle(css)
     },
@@ -208,6 +209,7 @@ export default {
 			let img = new Image();
       img.src = this.baseImageUrl
 			img.onload = function(){
+        console.log("+++++++++++++++++")
 				_this.ctx.drawImage(img,0,0);
         _this.canvas_copy()
 			}

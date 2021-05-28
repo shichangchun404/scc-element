@@ -36,7 +36,12 @@ export default {
     fillStyle: {
       type: String,
       default: 'rgba(255,106,0,.5)'
-    }
+    },
+    baseImageUrl: {
+      type: String,
+      default: "https://developer.s3-accelerate.cn-north-1.jdcloud-oss.com/developer/regions-and-availabilityzones_1622165543920.png"
+      // required: true
+    },
   },
   data () {
     return {
@@ -209,7 +214,7 @@ export default {
 			let img = new Image();
       img.src = this.baseImageUrl
 			img.onload = function(){
-        console.log("+++++++++++++++++")
+        console.log("+++++++++++++++++ 1")
 				_this.ctx.drawImage(img,0,0);
         _this.canvas_copy()
 			}
