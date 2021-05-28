@@ -210,11 +210,11 @@ export default {
      * 从服务端拿截图，绘制到canvas
     */
     drawImageInCanvas(){
-      console.log("drawImageInCanvas 3")
+      console.log("drawImageInCanvas 4")
       var _this = this
 			let img = new Image();
-      img.setAttribute("crossOrigin",'Anonymous')
       img.src = this.baseImageUrl
+      img.setAttribute("crossOrigin",'Anonymous')
 			img.onload = function(){
         console.log("+++++++++++++++++ 1")
 				_this.ctx.drawImage(img,0,0);
