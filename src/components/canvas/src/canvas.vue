@@ -216,8 +216,8 @@ export default {
         // _this.setStyle(css)
         // 创建一个新的 canvas 元素
         let mycanvas = document.createElement("canvas");
-        mycanvas.style.left = `${img.width}px`;  
-        mycanvas.style.top = `${img.height}px`; 
+        mycanvas.style.width = `${img.width}px`;  
+        mycanvas.style.height = `${img.height}px`;
         _this.canvasBox.appendChild(mycanvas)
         _this.globalcanvas = mycanvas
 		    _this.ctx = _this.globalcanvas.getContext("2d");
