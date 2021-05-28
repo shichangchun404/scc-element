@@ -8,7 +8,7 @@
       <div class="dialogbg"></div>
       <!-- <div id="dialog" class="dialog"></div> -->
       <div id="canvasBox" class="dialog">
-        <canvas id="mycanvas"></canvas>
+        <canvas id="mycanvas" class="mycanvas"></canvas>
       </div>
       <div class="botton-box">
         <button @click="closeDialog()">取消</button>
@@ -215,7 +215,9 @@ export default {
       img.src = this.baseImageUrl
       img.setAttribute("crossOrigin",'Anonymous')
 			img.onload = function(){
-        console.log("img.width, img.height", img.width, img.height)
+        console.log("img.width, img.height 2 ", img.width, img.height)
+        var css = `.mycanvas{width: ${img.width}px; height: ${img.height}px;}`
+        this.setStyle(css)
 				_this.ctx.drawImage(img,0,0,img.width, img.height);
         _this.canvas_copy()
 			}

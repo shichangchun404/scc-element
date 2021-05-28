@@ -39,8 +39,7 @@ export default {
     },
     baseImageUrl: {
       type: String,
-      default: "https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2144684161/p85840.png"
-      // required: true
+      default: ""
     },
   },
   data () {
@@ -216,8 +215,8 @@ export default {
       img.src = this.baseImageUrl
       img.setAttribute("crossOrigin",'Anonymous')
 			img.onload = function(){
-        console.log("+++++++++++++++++ 2")
-				_this.ctx.drawImage(img,0,0);
+        console.log("img.width, img.height", img.width, img.height)
+				_this.ctx.drawImage(img,0,0,img.width, img.height);
         _this.canvas_copy()
 			}
     },
