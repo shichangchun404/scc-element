@@ -217,8 +217,8 @@ export default {
 			img.onload = function(){
         console.log("img.width, img.height 2 ", img.width, img.height)
         var css = `.mycanvas{width: ${img.width}px; height: ${img.height}px;}`
-        this.setStyle(css)
-				_this.ctx.drawImage(img,0,0,img.width, img.height);
+        _this.setStyle(css)
+				_this.ctx.drawImage(img,0,0);
         _this.canvas_copy()
 			}
     },
