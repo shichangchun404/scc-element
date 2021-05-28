@@ -210,7 +210,7 @@ export default {
      * 从服务端拿截图，绘制到canvas
     */
     drawImageInCanvas(){
-      console.log("drawImageInCanvas 1")
+      console.log("drawImageInCanvas 2")
       var _this = this
 			let img = new Image();
       img.setAttribute("crossOrigin",'Anonymous')
