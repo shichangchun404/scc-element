@@ -39,7 +39,7 @@ export default {
     },
     baseImageUrl: {
       type: String,
-      default: "https://developer.s3-accelerate.cn-north-1.jdcloud-oss.com/developer/regions-and-availabilityzones_1622165543920.png"
+      default: "https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2144684161/p85840.png"
       // required: true
     },
   },
@@ -210,13 +210,13 @@ export default {
      * 从服务端拿截图，绘制到canvas
     */
     drawImageInCanvas(){
-      console.log("drawImageInCanvas 4")
+      console.log("drawImageInCanvas 5")
       var _this = this
 			let img = new Image();
       img.src = this.baseImageUrl
       img.setAttribute("crossOrigin",'Anonymous')
 			img.onload = function(){
-        console.log("+++++++++++++++++ 1")
+        console.log("+++++++++++++++++ 2")
 				_this.ctx.drawImage(img,0,0);
         _this.canvas_copy()
 			}

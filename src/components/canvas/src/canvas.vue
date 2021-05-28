@@ -39,8 +39,7 @@ export default {
     },
     baseImageUrl: {
       type: String,
-      default: "https://static-aliyun-doc.oss-accelerate.aliyuncs.com/assets/img/zh-CN/2144684161/p85840.png"
-      // required: true
+      default: ""
     },
   },
   data () {
