@@ -213,6 +213,7 @@ export default {
       console.log("drawImageInCanvas 1")
       var _this = this
 			let img = new Image();
+      img.setAttribute("crossOrigin",'Anonymous')
       img.src = this.baseImageUrl
 			img.onload = function(){
         console.log("+++++++++++++++++ 1")
