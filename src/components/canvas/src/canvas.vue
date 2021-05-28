@@ -211,7 +211,7 @@ export default {
       img.src = this.baseImageUrl
       img.setAttribute("crossOrigin",'Anonymous')
 			img.onload = function(){
-        console.log("创建一个新的 canvas 元素 img.width, img.height 3 ", img.width, img.height)
+        console.log("创建一个新的 canvas 元素 img.width, img.height 4 ", img.width, img.height)
         // var css = `.mycanvas{width: ${img.width}px; height: ${img.height}px;}`
         // _this.setStyle(css)
         // 创建一个新的 canvas 元素
