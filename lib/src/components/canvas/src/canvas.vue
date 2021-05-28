@@ -208,7 +208,7 @@ export default {
 			let img = new Image();
       img.src = this.baseImageUrl
 			img.onload = function(){
-				_this.drawImage(img,0,0);
+				_this.ctx.drawImage(img,0,0);
         _this.canvas_copy()
 			}
     },
