@@ -6,10 +6,7 @@
     </div>
     <div class="canvas-edit-box">
       <div class="dialogbg"></div>
-      <!-- <div id="dialog" class="dialog"></div> -->
-      <div id="canvasBox" class="dialog">
-        <canvas id="mycanvas" class="mycanvas"></canvas>
-      </div>
+      <div id="canvasBox" class="dialog"></div>
       <div class="botton-box">
         <button @click="closeDialog()">取消</button>
         <button @click="listen4Rectangle()">矩形工具</button>
@@ -65,8 +62,7 @@ export default {
   mounted () {
     this.selectObj = document.getElementById(this.contentId)
     this.canvasBox = document.getElementById('canvasBox')
-    this.globalcanvas = document.getElementById('mycanvas')
-		this.ctx = this.globalcanvas.getContext("2d");
+    
     this.textarea = document.getElementById('textarea')
     this.hoverRectangle = document.getElementById('hoverRectangle')
     this.listenSelectContent()
@@ -215,9 +211,16 @@ export default {
       img.src = this.baseImageUrl
       img.setAttribute("crossOrigin",'Anonymous')
 			img.onload = function(){
-        console.log("img.width, img.height 2 ", img.width, img.height)
-        var css = `.mycanvas{width: ${img.width}px; height: ${img.height}px;}`
-        _this.setStyle(css)
+        console.log("创建一个新的 canvas 元素 img.width, img.height 2 ", img.width, img.height)
+        // var css = `.mycanvas{width: ${img.width}px; height: ${img.height}px;}`
+        // _this.setStyle(css)
+        // 创建一个新的 canvas 元素
+        let mycanvas = document.createElement("canvas");
+        mycanvas.style.left = img.width;  
+        mycanvas.style.top = img.height;
+        _this.canvasBox.appendChild(mycanvas)
+        _this.globalcanvas = mycanvas
+		    _this.ctx = _this.globalcanvas.getContext("2d");
 				_this.ctx.drawImage(img,0,0);
         _this.canvas_copy()
 			}
