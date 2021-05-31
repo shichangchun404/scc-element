@@ -211,13 +211,13 @@ export default {
       img.src = this.baseImageUrl
       img.setAttribute("crossOrigin",'Anonymous')
 			img.onload = function(){
-        console.log("创建一个新的 canvas 元素 img.width, img.height 3 ", img.width, img.height)
+        console.log("创建一个新的 canvas 元素 img.width, img.height 4 ", img.width, img.height)
         // var css = `.mycanvas{width: ${img.width}px; height: ${img.height}px;}`
         // _this.setStyle(css)
         // 创建一个新的 canvas 元素
         let mycanvas = document.createElement("canvas");
-        mycanvas.style.left = `${img.width}px`;  
-        mycanvas.style.top = `${img.height}px`; 
+        mycanvas.style.width = `${img.width}px`;  
+        mycanvas.style.height = `${img.height}px`;
         _this.canvasBox.appendChild(mycanvas)
         _this.globalcanvas = mycanvas
 		    _this.ctx = _this.globalcanvas.getContext("2d");

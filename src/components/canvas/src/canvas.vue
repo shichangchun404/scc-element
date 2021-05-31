@@ -216,6 +216,8 @@ export default {
         // _this.setStyle(css)
         // 创建一个新的 canvas 元素
         let mycanvas = document.createElement("canvas");
+        mycanvas.width = img.width
+        mycanvas.height = img.height
         mycanvas.style.width = `${img.width}px`;  
         mycanvas.style.height = `${img.height}px`;
         _this.canvasBox.appendChild(mycanvas)
