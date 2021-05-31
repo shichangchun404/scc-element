@@ -205,7 +205,7 @@ export default {
      * 从服务端拿截图，绘制到canvas
     */
     drawImageInCanvas(){
-      console.log("drawImageInCanvas 6")
+      console.log("drawImageInCanvas 7")
       var _this = this
 			let img = new Image();
       img.src = this.baseImageUrl
@@ -218,8 +218,8 @@ export default {
         let mycanvas = document.createElement("canvas");
         mycanvas.width = img.width
         mycanvas.height = img.height
-        mycanvas.style.width = `${img.width}px`;  
-        mycanvas.style.height = `${img.height}px`;
+        // mycanvas.style.width = `${img.width}px`;  
+        // mycanvas.style.height = `${img.height}px`;
         _this.canvasBox.appendChild(mycanvas)
         _this.globalcanvas = mycanvas
 		    _this.ctx = _this.globalcanvas.getContext("2d");
@@ -292,7 +292,20 @@ export default {
      * 动态矩形
      */ 
     printHoverRectangle(start,end){ 
-      var style = `.hoverRectangle{display: block;left: ${start.x}px;top: ${start.y}px;width: ${end.x-start.x}px;height: ${end.y-start.y}px;}`
+      var style = ''
+      if (start.x<end.x) {
+        if (start.y<end.y) {
+          style = `.hoverRectangle{display: block;left: ${start.x}px;top: ${start.y}px;width: ${Math.abs(end.x-start.x)}px;height: ${Math.abs(end.y-start.y)}px;}`
+        } else {
+          style = `.hoverRectangle{display: block;left: ${start.x}px;top: ${end.y}px;width: ${Math.abs(end.x-start.x)}px;height: ${Math.abs(end.y-start.y)}px;}`
+        } 
+      } else {
+        if (start.y<end.y) {
+          style = `.hoverRectangle{display: block;left: ${end.x}px;top: ${start.y}px;width: ${Math.abs(end.x-start.x)}px;height: ${Math.abs(end.y-start.y)}px;}`
+        } else {
+          style = `.hoverRectangle{display: block;left: ${end.x}px;top: ${end.y}px;width: ${Math.abs(end.x-start.x)}px;height: ${Math.abs(end.y-start.y)}px;}`
+        }
+      }
       this.setStyle(style)
     },
 
