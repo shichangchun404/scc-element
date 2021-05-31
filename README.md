@@ -14,6 +14,7 @@
 |名称|类型|是否必需|默认值|描述|
 |---|---|---|---|---|
 |**contentId**|String|true|-- |需要截图的内容区域DOM的id|
+|**baseImageUrl**|String|true|-- |服务端截图图片返回banse64格式字符串（客户端截图存在图片跨域问题，服务端返回url格式要设置图片跨域访问）|
 |**fillStyle**|String|false|'rgba(255,106,0,.5)'|矩形工具填充颜色|
 |**getImgFile**|Function|false|-- |获取截图后的生成的图片函数|
 
@@ -24,13 +25,18 @@
 <template>
     <div>
       <div id="content">我是正文内容</div>
-      <scc-canvas contentId="content" @getImgFile="getImgFile"></scc-canvas>
+      <scc-canvas contentId="content" @getImgFile="getImgFile" :baseImageUrl="baseImageUrl"></scc-canvas>
     </div>
 </template>
 
 <script>
 import {upfile} from '@/api'
 export default {
+  data(){
+    return {
+      baseImageUrl: '"data:images/png;base64,XXXXXXXXXXXXXXXXXXXXXXXX'
+    }
+  }, 
   methods: {
     async getImgFile(file, data) {
       let form = new FormData();
