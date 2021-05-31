@@ -205,7 +205,7 @@ export default {
      * 从服务端拿截图，绘制到canvas
     */
     drawImageInCanvas(){
-      console.log("drawImageInCanvas 6")
+      console.log("drawImageInCanvas 7")
       var _this = this
 			let img = new Image();
       img.src = this.baseImageUrl
@@ -218,8 +218,8 @@ export default {
         let mycanvas = document.createElement("canvas");
         mycanvas.width = img.width
         mycanvas.height = img.height
-        mycanvas.style.width = `${img.width}px`;  
-        mycanvas.style.height = `${img.height}px`;
+        // mycanvas.style.width = `${img.width}px`;  
+        // mycanvas.style.height = `${img.height}px`;
         _this.canvasBox.appendChild(mycanvas)
         _this.globalcanvas = mycanvas
 		    _this.ctx = _this.globalcanvas.getContext("2d");
