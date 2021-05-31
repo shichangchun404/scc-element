@@ -6,7 +6,7 @@
     </div>
     <div class="canvas-edit-box">
       <div class="dialogbg"></div>
-      <div id="dialog" class="dialog"></div>
+      <div id="canvasBox" class="dialog"></div>
       <div class="botton-box">
         <button @click="closeDialog()">取消</button>
         <button @click="listen4Rectangle()">矩形工具</button>
@@ -33,7 +33,11 @@ export default {
     fillStyle: {
       type: String,
       default: 'rgba(255,106,0,.5)'
-    }
+    },
+    baseImageUrl: {
+      type: String,
+      default: ""
+    },
   },
   data () {
     return {
@@ -57,7 +61,8 @@ export default {
   },
   mounted () {
     this.selectObj = document.getElementById(this.contentId)
-    this.canvasBox = document.getElementById('dialog')
+    this.canvasBox = document.getElementById('canvasBox')
+    
     this.textarea = document.getElementById('textarea')
     this.hoverRectangle = document.getElementById('hoverRectangle')
     this.listenSelectContent()
@@ -65,6 +70,7 @@ export default {
     this.listen4Rectangle()
     this.listenWindowScroll()
     this.listenHoverRectangle()
+    this.drawImageInCanvas()
   },
   methods: {
     /*
@@ -92,7 +98,7 @@ export default {
         }
       }
       this.selectObj.onmousedown = function(e){ //1清空dialog内容 2隐藏dialog弹窗
-        _this.canvasBox.innerHTML = ''
+        //_this.canvasBox.innerHTML = '' // to do
         _this.closeDialog()
       }
     },
@@ -175,7 +181,8 @@ export default {
      * 弹出框tip
      */
     showTip(txt,target,position){
-      this.getCanvasFromHtml()
+      //this.getCanvasFromHtml()
+      //this.drawImageInCanvas()
       var css = `.select-box{left: ${position.x}px; top: ${position.y}px;display: block;}`
       this.setStyle(css)
     },
@@ -192,6 +199,33 @@ export default {
         _this.ctx = _this.globalcanvas.getContext("2d");
         _this.canvas_copy()
       });
+    },
+
+    /**
+     * 从服务端拿截图，绘制到canvas
+    */
+    drawImageInCanvas(){
+      console.log("drawImageInCanvas 8")
+      var _this = this
+			let img = new Image();
+      img.src = this.baseImageUrl
+      img.setAttribute("crossOrigin",'Anonymous')
+			img.onload = function(){
+        console.log("创建一个新的 canvas 元素 img.width, img.height 4 ", img.width, img.height)
+        // var css = `.mycanvas{width: ${img.width}px; height: ${img.height}px;}`
+        // _this.setStyle(css)
+        // 创建一个新的 canvas 元素
+        let mycanvas = document.createElement("canvas");
+        mycanvas.width = img.width
+        mycanvas.height = img.height
+        // mycanvas.style.width = `${img.width}px`;  
+        // mycanvas.style.height = `${img.height}px`;
+        _this.canvasBox.appendChild(mycanvas)
+        _this.globalcanvas = mycanvas
+		    _this.ctx = _this.globalcanvas.getContext("2d");
+				_this.ctx.drawImage(img,0,0);
+        _this.canvas_copy()
+			}
     },
 
     /**
@@ -258,7 +292,20 @@ export default {
      * 动态矩形
      */ 
     printHoverRectangle(start,end){ 
-      var style = `.hoverRectangle{display: block;left: ${start.x}px;top: ${start.y}px;width: ${end.x-start.x}px;height: ${end.y-start.y}px;}`
+      var style = ''
+      if (start.x<end.x) {
+        if (start.y<end.y) {
+          style = `.hoverRectangle{display: block;left: ${start.x}px;top: ${start.y}px;width: ${Math.abs(end.x-start.x)}px;height: ${Math.abs(end.y-start.y)}px;}`
+        } else {
+          style = `.hoverRectangle{display: block;left: ${start.x}px;top: ${end.y}px;width: ${Math.abs(end.x-start.x)}px;height: ${Math.abs(end.y-start.y)}px;}`
+        } 
+      } else {
+        if (start.y<end.y) {
+          style = `.hoverRectangle{display: block;left: ${end.x}px;top: ${start.y}px;width: ${Math.abs(end.x-start.x)}px;height: ${Math.abs(end.y-start.y)}px;}`
+        } else {
+          style = `.hoverRectangle{display: block;left: ${end.x}px;top: ${end.y}px;width: ${Math.abs(end.x-start.x)}px;height: ${Math.abs(end.y-start.y)}px;}`
+        }
+      }
       this.setStyle(style)
     },
 
