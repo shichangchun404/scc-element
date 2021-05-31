@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import html2canvas from 'html2canvas';
+// import html2canvas from 'html2canvas';
 export default {
   name: 'SccCanvas',
   props: {
@@ -62,7 +62,6 @@ export default {
   mounted () {
     this.selectObj = document.getElementById(this.contentId)
     this.canvasBox = document.getElementById('canvasBox')
-    
     this.textarea = document.getElementById('textarea')
     this.hoverRectangle = document.getElementById('hoverRectangle')
     this.listenSelectContent()
@@ -98,7 +97,7 @@ export default {
         }
       }
       this.selectObj.onmousedown = function(e){ //1清空dialog内容 2隐藏dialog弹窗
-        //_this.canvasBox.innerHTML = '' // to do
+        _this.canvasBox.innerHTML = ''
         _this.closeDialog()
       }
     },
@@ -182,24 +181,24 @@ export default {
      */
     showTip(txt,target,position){
       //this.getCanvasFromHtml()
-      //this.drawImageInCanvas()
+      this.drawImageInCanvas()
       var css = `.select-box{left: ${position.x}px; top: ${position.y}px;display: block;}`
       this.setStyle(css)
     },
 
     /**
-     * html2canvas 生成页面截图
+     * html2canvas 生成页面截图 存在图片跨域问题
      */
-    getCanvasFromHtml(){
-      var _this = this
-      var options = {allowTaint:true}
-      html2canvas(document.body, options).then(function(canvas) {
-        _this.globalcanvas = canvas
-        _this.canvasBox.appendChild(canvas)
-        _this.ctx = _this.globalcanvas.getContext("2d");
-        _this.canvas_copy()
-      });
-    },
+    // getCanvasFromHtml(){
+    //   var _this = this
+    //   var options = {allowTaint:true}
+    //   html2canvas(document.body, options).then(function(canvas) {
+    //     _this.globalcanvas = canvas
+    //     _this.canvasBox.appendChild(canvas)
+    //     _this.ctx = _this.globalcanvas.getContext("2d");
+    //     _this.canvas_copy()
+    //   });
+    // },
 
     /**
      * 从服务端拿截图，绘制到canvas
@@ -210,14 +209,10 @@ export default {
       img.src = this.baseImageUrl
       img.setAttribute("crossOrigin",'Anonymous')
 			img.onload = function(){
-        // var css = `.mycanvas{width: ${img.width}px; height: ${img.height}px;}`
-        // _this.setStyle(css)
         // 创建一个新的 canvas 元素
         let mycanvas = document.createElement("canvas");
         mycanvas.width = img.width
         mycanvas.height = img.height
-        // mycanvas.style.width = `${img.width}px`;  
-        // mycanvas.style.height = `${img.height}px`;
         _this.canvasBox.appendChild(mycanvas)
         _this.globalcanvas = mycanvas
 		    _this.ctx = _this.globalcanvas.getContext("2d");
