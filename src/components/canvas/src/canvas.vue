@@ -205,7 +205,7 @@ export default {
      * 从服务端拿截图，绘制到canvas
     */
     drawImageInCanvas(){
-      console.log("drawImageInCanvas 5")
+      console.log("drawImageInCanvas 6")
       var _this = this
 			let img = new Image();
       img.src = this.baseImageUrl
