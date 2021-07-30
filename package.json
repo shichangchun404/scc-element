@@ -5,7 +5,6 @@
   "main": "lib/index.common.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "entry": "npm run build:entry",
     "build": "npm version patch && npm run build:entry && npm run build:common && npm run build:es && npm run build:theme",
     "build:entry": "node build/bin/build-entry.js",
     "build:common": "webpack --config build/webpack.common.js",
