@@ -5,7 +5,9 @@
   "main": "lib/index.common.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm version patch && npm run build:common && npm run build:es && npm run build:theme",
+    "entry": "npm run build:entry",
+    "build": "npm version patch && npm run build:entry && npm run build:common && npm run build:es && npm run build:theme",
+    "build:entry": "node build/bin/build-entry.js",
     "build:common": "webpack --config build/webpack.common.js",
     "build:es": "webpack --config build/webpack.es.js",
     "build:theme": "gulp build --gulpfile gulpfile.js"
@@ -46,6 +48,7 @@
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
-    "html2canvas": "^1.0.0-rc.7"
+    "html2canvas": "^1.0.0-rc.7",
+    "json-templater": "^1.2.0"
   }
 }
