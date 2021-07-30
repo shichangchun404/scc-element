@@ -17,5 +17,6 @@ const template = render(MAIN_TEMPLATE, {
   componentNames: componentNames.join(','+endOfLine),
   version: process.env.VERSION || require(`../../package.json`).version,
 });
-console.log('template ',importPaths, componentNames, template)
+
+//console.log('template ',importPaths, componentNames, template)
 fs.writeFileSync(path.join(__dirname, '../../src/index.js'),template)
